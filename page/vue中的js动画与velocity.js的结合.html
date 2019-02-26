@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中的js动画与velocityjs的结合</title>
+    <script src="../common/vue.js"></script>
+    <link rel="stylesheet" href="../common/animate.css" type="text/css">
+    <style>
+        .v-enter,.v-leave-to {
+            opacity: 0;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+    <div id="root">
+        <transition mode="out-in" enter-active-class="animated swing" leave-active-class="animated bounceOut">
+            <component :is="type"></component>
+        </transition>
+        <button  @click="handleclick">切换</button>
+    </div>
+    <script>
+        Vue.component('child-one',{
+            template:'<div>hello</div>'
+        })
+        Vue.component('child-two',{
+            template:'<div>world</div>'
+        })
+        var vm=new Vue({
+            el:'#root',
+            data:{
+                type:'child-one',
+            },
+            methods:{
+                handleclick:function () {
+                    this.type=(this.type==='child-one'?'child-two':'child-one')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的列表过渡</title>
+    <script src="../common/vue.js"></script>
+    <link rel="stylesheet" href="../common/animate.css" type="text/css">
+</head>
+<body>
+    <div id="root">
+        <transition-group enter-active-class="animated bounceIn">
+            <div v-for="item of list" :key="item.id">{{item.title}}</div>
+        </transition-group>
+        <button @click="handleClick">Add</button>
+    </div>
+    <script>
+        var count =0
+        var app=new Vue({
+            el:'#root',
+            data:{
+                list:[]
+            },
+            methods:{
+                handleClick:function () {
+                    count ++
+                    this.list.push({
+                        id:count,
+                        title:'hello world'
+                    })
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

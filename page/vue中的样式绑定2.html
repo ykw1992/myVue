@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中的样式绑定</title>
+    <script src="../common/vue.js"></script>
+
+</head>
+<body>
+<!--css对象绑定 只要是冒号：绑定的对象一般都是表达式所以mystyle是一个变量-->
+<div id="app" :style="[mystyle,{fontSize:'35px'}]" @click="handleDivClick">hello world</div>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            mystyle:{
+                color:'red',
+            }
+        },
+        methods:{
+            handleDivClick:function () {
+                this.mystyle.color= this.mystyle.color=='red'?'green':'red';
+            }
+        }
+    })
+</script>
+</body>
+</html>

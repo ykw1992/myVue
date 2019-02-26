@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的css动画原理</title>
+    <script src="../common/vue.js"></script>
+    <link rel="stylesheet" href="../common/animate.css" type="text/css">
+    <style>
+        .v-enter,.v-leave-to {
+            opacity: 0;
+        }
+        .v-enter-active,.v-leave-active{
+            transition:opacity 2s;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!--animate.css库中的动画可以通过animated 来直接使用，同时可以使用自定义的过度动画-->
+        <!--apper属性是在页面第一次加载就为dom绑定动画-->
+        <transition
+                appear
+                appear-active-class="animated bounceIn"
+                enter-active-class="animated bounceIn v-enter-active"
+                leave-active-class="animated bounceOut v-leave-active"
+            >
+            <div v-if="show">hello world</div>
+        </transition>
+        <button  @click="handleclick">切换</button>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#root',
+            data:{
+                show:true,
+            },
+            methods:{
+                handleclick:function () {
+                    this.show=!this.show
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期函数</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+    var app=new Vue({
+        el:'#app',
+        template:'<div>{{aa}}</div>',
+        data:{
+          aa:'haha',
+        },
+        //el创建前
+         beforeCreate:function () {
+             console.log('beforeCreate');
+         },
+        //创建后
+        created:function () {
+            console.log('created');
+        },
+        beforeMount:function () {
+            console.log('渲染前');
+            console.log(this.$el);
+        },
+        mounted:function () {
+            console.log('渲染后');
+            console.log(this.$el);
+        },
+       beforeDestory:function(){
+         console.log('gg');
+       },
+        destroyed:function () {
+            console.log('destory');
+        },
+        beforeUpdate:function () {
+            console.log('beforyUpdate');
+        },
+        updated:function () {
+            console.log('updated');
+        }
+    })
+</script>
+</body>
+</html>

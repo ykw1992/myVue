@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画封装</title>
+    <script src="../common/vue.js"></script>
+    <link rel="stylesheet" href="../common/animate.css" type="text/css">
+</head>
+<body>
+    <div id="root">
+        <fade :show="show">
+            <div>hello</div>
+        </fade>
+        <button @click="handleClick">过渡</button>
+    </div>
+    <script>
+        /*把动画封装在组件里*/
+        Vue.component('fade',{
+            props:['show'],
+            template:`
+              <transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut">
+                 <slot v-if="show"></slot>
+              </transition>
+            `
+        })
+        var app=new Vue({
+            el:'#root',
+            data:{
+                show:true
+            },
+            methods:{
+                handleClick:function () {
+                    this.show=!this.show
+                }
+            }
+        })
+    </script>
+</body>
+</html>

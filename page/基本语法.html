@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板语法</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                name:'dell',
+            },
+            template:"<div><h1>{{name}}</h1></div>"//第一种模板{{}}插值表达式
+            // template:"<div v-text='name'></div>"//第二种语法 v-text 将innertext定义在data
+            // template: "<div v-html='name'></div>"第三种将innerhtml定义在data
+
+        })
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <child content="hello world"></child>
+        <child content="hello world"></child>
+    </div>
+    <script>
+        var app=new Vue({
+            el:'#root',
+            components:{
+                child:{
+                    props:{
+                        content:{
+                            type:String,
+                            required:false,
+                            default:'haha',
+                            validator:function (value) {
+                                return (value.length>5);
+                            }
+                        },
+                    },
+                    template:"<div>{{content}}</div>",
+                }
+            }
+        })
+    </script>
+</body>
+</html>

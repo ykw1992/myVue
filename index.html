@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script src="common/vue.js"></script>
+</head>
+<body>
+    <div id="app">{{content}}</div>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                content:'我是你爸爸'
+            }
+        })
+        setInterval(function () {
+            app.$data.content='我是你爹'
+        },2000)
+    </script>
+</body>
+</html>

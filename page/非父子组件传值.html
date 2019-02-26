@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>非父子组件传值(bus/总线)</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <child content="Yang"></child>
+    <child content="KeWei"></child>
+</div>
+<script>
+    Vue.prototype.bus=new Vue()
+    Vue.component('child',{
+        props:{
+          content:String
+        },
+        data:function(){
+          return {
+              selfcontent:this.content
+          }
+        },
+        methods:{
+            change:function () {
+                this.bus.$emit('hehe',this.selfcontent)
+            },
+
+        },
+        mounted:function () {
+            var this_=this
+            this.bus.$on("hehe",function (msg) {
+                this_.selfcontent=msg
+            })
+        },
+        template:'<div @click="change">{{selfcontent}}</div>'
+    })
+    var app=new Vue({
+        el:'#app',
+
+    })
+</script>
+</body>
+</html>

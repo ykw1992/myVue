@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 在组件上绑定的@click是自定义事件，需要组件$emit来触发该自定义事件，
+        或者native来表示这个一个原生事件-->
+        <child @click.native="click"></child>
+    </div>
+    <script>
+        Vue.component('child',{
+            template:'<div>dianji</div>',
+            // template:'<div @click="handleclick">dianji</div>'在dom上绑定的是原生事件
+        })
+        var app=new Vue({
+            el:'#root',
+            methods:{
+                click:function () {
+                    alert('native');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

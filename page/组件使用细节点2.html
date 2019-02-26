@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件使用细节</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--ref定义在dom上$refs.name获取dom 定义在component上是获取组件-->
+        <div is="count" @add="totalhandle" ref="one"></div>
+        <div is="count" @add="totalhandle" ref="two"></div>
+        <div>{{total}}</div>
+    </div>
+    <script>
+        <!--全局组件必须写在vue实例之前才会生效，要么就定义在vue实例中的局部组件-->
+        Vue.component('count',{
+            template:'<div @click="divHandleClick">{{number}}</div>',
+            data:function () {
+                return {
+                    number:0
+                }
+            },
+            methods: {
+                divHandleClick:function () {
+                    this.number ++ ;
+                    this.$emit('add');
+
+                }
+            }
+        })
+
+        var app=new Vue({
+            el:'#app',
+            data:{
+                total:0
+            },
+            methods:{
+                totalhandle:function () {
+                   this.total=this.$refs.one.number+this.$refs.two.number;
+                }
+            },
+        })
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性、方法、倾听器</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        template: '<div>{{fullName}}</div>',
+        data: {
+            firstName: 'yang',
+            lastName: 'kewei',
+            // fullName:'',
+            age:20
+        },
+        computed: {
+            fullName: function () {
+                console.log('计算了');//当计算属性中的变量未发生改变时，使用上次的计算结果（缓存）
+                return this.firstName +' ' + this.lastName;//计算属性一定要返回计算结果
+            }
+        }
+
+
+        // methods:{
+        //     fullName:function () {
+        //         //无缓存机制
+        //         console.log('计算了一次');
+        //         return this.firstName+' '+this.lastName;
+        //     }
+        // }
+
+        // watch:{//偏向于改变时执行监听。
+        //     firstName:function () {
+        //         this.fullName=this.firstName+' '+this.lastName;
+        //     },
+        //     lastName:function () {
+        //         this.fullName=this.firstName+' '+this.lastName;
+        //     },
+        // }
+    })
+</script>
+</body>
+</html>

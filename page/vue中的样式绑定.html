@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中的样式绑定</title>
+    <script src="../common/vue.js"></script>
+    <style>
+        .activated {
+            color:skyblue;
+        }
+        .activeOne {
+            color:chocolate;
+        }
+        .activeTwo {
+            color:green;
+        }
+    </style>
+</head>
+<body>
+<!--class对象绑定-->
+<!--<div id="app" @click="handleDivClick" :class="{activated:isActivated}">Hello World</div>-->
+<!--class数组变赋值-->
+<div id="app" @click="handleDivClick" :class="[active,activeOne]">hello world</div>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            active:'',
+            activeOne:'',
+            activeTwo:''
+        },
+        methods:{
+            handleDivClick:function () {
+                this.activeOne=this.activeOne=='activeTwo'?'':'activeTwo';
+            }
+        }
+    })
+</script>
+</body>
+</html>

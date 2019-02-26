@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件传值</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" name="" id="txt" v-model="inputmodel">
+    <input type="button" value="提交" @click="handlebtnclick">
+    <ul>
+        /*利用is 属性也可以 is='AppLi'*/
+        <app-li v-for="(item,index) in list" :content="item" :index="index" @delete="itemdelete"></app-li>
+    </ul>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            list: ['1', '2', '3'],
+            inputmodel: ''
+        },
+        components: {
+            AppLi: {
+                props: ['content', 'index'],
+                template: "<li @click='itemclick'>{{content}}</li>",
+                methods: {
+                    itemclick: function () {
+                        this.$emit('delete', this.index);
+                    }
+                }
+            }
+
+        },
+        methods: {
+            handlebtnclick: function () {
+                if (this.inputvalue != '') {
+                    this.list.push(this.inputmodel);
+                    this.inputmodel='';
+
+                }
+            },
+            itemdelete: function (index) {
+                this.list.splice(index, 1);
+            }
+        }
+    })
+</script>
+</body>
+</html>

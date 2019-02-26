@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中的条件渲染</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+<!--  v-if dom删除-->
+<div id="app" v-if="show">{{message}}</div>
+<!--dom display属性改变-->
+<!--<div id="app" v-show="show">{{message}}</div>-->
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            message:'hello world',
+            show:true
+        }
+    })
+</script>
+</body>
+</html>

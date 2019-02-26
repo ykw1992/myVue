@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域插槽</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <child>
+            <template slot-scope="props"><!--props是用于存放slot的数据-->
+                <h3>{{props.item}}</h3>
+            </template>
+        </child>
+    </div>
+    <script>
+        Vue.component('child',{
+            template:`<div><slot v-for="item of list" :item="item"></slot></div>`,
+            data:function () {
+                return {
+                    list:[1,2,3,4]
+                }
+            }
+        })
+        var vm=new Vue({
+            el:'#root'
+        })
+    </script>
+</body>
+</html>

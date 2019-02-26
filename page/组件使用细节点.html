@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件使用细节点</title>
+    <script src="../common/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tbody>
+                <!--符合h5的语法规范 is语法将其指定为组件-->
+                <tr is="apptr"></tr>
+                <!--第二种方式可能会因为不符合h5语法而出现bug，因为tbody里面要写tr td-->
+                <!--<apptr></apptr>-->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+              message:'根实例数据',
+            },
+            components:{
+                apptr:{
+                    /*根实例的data是一个属性，而子组件的data是一个函数，返回数据对象，每一个组件各自调用自己的数据*/
+                    data:function () {
+                        return {
+                           content:'haha'
+                        }
+                    },
+                    template:'<tr ><td>{{content}}</td></tr>'
+                }
+            }
+
+        })
+
+    </script>
+</body>
+</html>

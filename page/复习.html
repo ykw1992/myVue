@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>复习</title>
+    <script src="../common/vue.js"></script>
+    <style>
+        .active {
+            color: red;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="app">{{fullName}}</div>-->
+<div id="app">
+    <p>{{message}}</p>
+    <template v-for="(item,index) of list" :key="item.id">
+        <div>{{item.text}}</div>
+        <span>{{item.text}}</span>
+    </template>
+    <template v-for="(item,key) of userInfo">
+        <div>{{item}}--{{key}}</div>
+    </template>
+</div>
+
+<script>
+    //数组操作 变异方法 pop push shift unshift splice sort reserse
+    var app=new Vue({
+        el:'#app',
+        data:{
+            message:'hello world !',
+            list:[{
+                id:'01',
+                text:'zhangsan'
+            },{
+                id:'02',
+                text:'lisi'
+            },{
+                id:'03',
+                text:'wangwu'
+            },{
+                id:'04',
+                text:'zhaoliu'
+            }],
+            userInfo:{
+                name:'dell',
+                age:'18',
+                sex:'男'
+            }
+        },
+
+    })
+</script>
+</body>
+</html>
